@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>wle</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background: linear-gradient(to bottom right, #ffd1dc, #ffe6f7);
+            color: #ff007f;
+            text-align: center;
+            padding: 20px;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-bottom: 15px;
+            text-shadow: 3px 3px #ff99cc;
+            color: #ff3399;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        p {
+            font-size: 1.4em;
+            line-height: 2;
+            margin: 20px 0;
+            text-align: justify;
+        }
+
+        .heart {
+            font-size: 60px;
+            animation: pulse 1.5s infinite;
+            margin: 10px;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+        }
+
+        .animation-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            margin-top: 30px;
+        }
+
+        iframe {
+            margin-top: 30px;
+            width: 100%;
+            max-width: 640px;
+            height: 360px;
+            border: none;
+            border-radius: 15px;
+        }
+
+        button {
+            padding: 15px 40px;
+            border: none;
+            background: linear-gradient(to right, #ff66b3, #ff99cc);
+            color: white;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1.2em;
+            transition: all 0.3s;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background: linear-gradient(to right, #ff99cc, #ff66b3);
+        }
+
+        .decorative {
+            font-size: 90px;
+            color: #ff3399;
+            text-shadow: 3px 3px 15px rgba(255, 51, 153, 0.7);
+            animation: floating 4s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        /* Background Video */
+        #bg-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            opacity: 0.5;
+        }
+
+        /* Efek Hujan Hati */
+        .rain-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .rain-container .heart {
+            position: absolute;
+            font-size: 30px;
+            animation: fall 5s linear infinite;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-10%); }
+            100% { transform: translateY(110vh); }
+        }
+
+        /* Galeri Foto Romantis */
+        .gallery {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .gallery img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 15px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.1);
+        }
+
+        /* Countdown Timer */
+        #countdown {
+            font-size: 2em;
+            margin-top: 30px;
+            color: #ff007f;
+        }
+
+        /* 1. Animasi Bunga Mekar */
+        .flower {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: radial-gradient(circle, pink, transparent);
+            border-radius: 50%;
+            animation: bloom 3s infinite ease-in-out;
+        }
+
+        @keyframes bloom {
+            0% {
+                transform: scale(0.8);
+                opacity: 0.7;
+            }
+            50% {
+                transform: scale(1.2);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(0.8);
+                opacity: 0.7;
+            }
+        }
+
+        /* 2. Pesan Cinta yang Muncul Dinamis */
+        .love-message {
+            font-size: 1.5em;
+            color: #ff007f;
+            animation: fadeIn 2s ease-in-out forwards;
+            opacity: 0;
+        }
+
+        .love-message:nth-child(1) {
+            animation-delay: 1s;
+        }
+
+        .love-message:nth-child(2) {
+            animation-delay: 3s;
+        }
+
+        .love-message:nth-child(3) {
+            animation-delay: 5s;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* 3. Efek Hujan Bunga */
+        .flower-fall {
+            position: fixed;
+            width: 30px;
+            height: 30px;
+            background: pink;
+            border-radius: 50%;
+            animation: fall 10s linear infinite;
+            top: -50px;
+        }
+
+        .flower-fall:nth-child(odd) {
+            animation-duration: 8s;
+            background: #ffe6f7;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+
+        /* 4. Kartu Ucapan Digital */
+        .card {
+            width: 300px;
+            height: 200px;
+            margin: 20px auto;
+            background: linear-gradient(to bottom right, #ff99cc, #ffe6f7);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        .card p {
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: all 0.5s ease-in-out;
+        }
+
+        .card:hover p {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+
+        @keyframes flicker {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.8;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="rain-container">
+        <div class="heart" style="left: 10%; animation-delay: 0s;">💖</div>
+        <div class="heart" style="left: 20%; animation-delay: 1s;">💕</div>
+        <div class="heart" style="left: 30%; animation-delay: 2s;">🌸</div>
+        <div class="heart" style="left: 40%; animation-delay: 3s;">🌹</div>
+    </div>
+
+    <h1>GOOD MORNING</h1>
+    <p>
+        aloo sayang aku mett pagiii, kamu dah mam belum? mam dulu yaa biar bantuin mama tambah semangat, terus kl bolu nya enak kapan kapan pas aku main kesana aku cobain bolu buatan sayang yaa, jangan lupa bikin yang enak sayang aku
+    </p>
+    <p>
+        kalo kamu cape istirahat yaa, jgn pernah merasa sendiri ada aku di sini, aku yang akan dengerin keluh kesah kamu, jadi kl kamu kenapa napa bilang ke aku yaa
+    </p>
+    <p>
+        oh iyaaa bentar lagi ada yang mau di tinggal ke sumbing, pasti mau kangen sama aku ahaha kasian, ntar kl aku dah pulang aku ceritain deh serunya naik gunung terusss kapan kapan kita naik gunung bareng yaaa sayang akuu
+    </p>
+
+
+    <!-- 1. Animasi Bunga Mekar -->
+    <div class="flower" style="top: 20%; left: 10%;"></div>
+    <div class="flower" style="top: 50%; left: 80%;"></div>
+
+    <!-- 2. Pesan Cinta Dinamis -->
+    <div>
+        <div class="love-message">SEMANGAT TERUS</div>
+        <div class="love-message">YA SAYANG AKUUU</div>
+        <div class="love-message"></div>
+    </div>
+
+    <!-- 3. Efek Hujan Bunga -->
+    <div class="flower-fall" style="left: 5%;"></div>
+    <div class="flower-fall" style="left: 30%;"></div>
+    <div class="flower-fall" style="left: 70%;"></div>
+
+    <!-- 4. Kartu Ucapan Digital -->
+    <div class="card">
+        <p> jika malam ada hantu maka </p>
+        <p> di hatiku ada kamu</p> 
+        <h2>love you sayang akuu</h2>
+    </div>
+
+    <!-- 5. Efek Cahaya Lilin -->
+    <div class="candle" style="top: 60%; left: 45%;"></div>
+
+    <div class="gallery">
+        <img src="tata1.jpg" alt="tata1">
+        <img src="tata2.jpg" alt="tata2">
+        <img src="tata3.jpg" alt="tata3">
+    </div>
+
+    </div>
+    </script>
+</body>
+</html>
